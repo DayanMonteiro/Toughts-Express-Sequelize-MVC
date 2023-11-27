@@ -14,6 +14,7 @@ const User = require("./models/User");
 
 // Import routes
 const toughtsRoutes = require("./routes/toughtsRoutes");
+// Import Controller
 const ToughtController = require("./controllers/ToughtController");
 
 app.engine("handlebars", exphbs());
