@@ -43,6 +43,12 @@
 }
 
 /* CONTAINER */
+.container {
+  min-height: 60vh;
+  padding: 2em;
+}
+
+/* MESSAGE */
 .message {
   padding: 1em;
   color: #004085;
@@ -52,11 +58,6 @@
   text-align: center;
   margin: 0 auto 2em;
   max-width: 60%;
-}
-
-.container {
-  min-height: 60vh;
-  padding: 2em;
 }
 
 /* LOGIN E REGISTER */
