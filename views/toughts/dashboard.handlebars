@@ -6,13 +6,15 @@
     
     <h3>Seus pensamentos:</h3>
     
-    {{!-- <ul>
+     <ul>
         {{#each toughts}}
             <li>
                 <span class="label">{{this.title}}</span>
                 <span class="actions">
                     <a href="/toughts/edit/{{this.id}}" class="btn">Editar</a>
-                    <form action="/toughts/remove" method="POST">
+                    <form 
+                    {{!-- action="/toughts/remove" method="POST" --}}
+                    >
                         <input type="hidden" name="id" value="{{this.id}}">
                         <input type="submit" value="Excluir" class="btn">
                     </form>
@@ -22,5 +24,5 @@
     </ul>
     {{#if emptyToughts}}
         <p>Ainda não há nenhum pensamento cadastrado, crie o seu <a href="/toughts/add">clicando aqui</a></p>
-    {{/if}} --}}
+    {{/if}} 
 </div>
