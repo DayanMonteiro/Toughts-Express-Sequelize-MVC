@@ -3,7 +3,13 @@ const User = require("../models/User");
 
 module.exports = class ToughtController {
   static async showToughts(req, res) {
-    res.render("toughts/home");
+    const toughtsData = await Tought.findAll({
+      include: User,
+    });
+
+    const toughts = toughtsData.map((result) => result.get({ plain: true }));
+
+    res.render("toughts/home", { toughts });
   }
 
   static async dashboard(req, res) {
@@ -18,25 +24,20 @@ module.exports = class ToughtController {
       plain: true,
     });
 
-    // check if user exists
-    if (!user) {
-      res.redirect("login");
-    }
-
     const toughts = user.Toughts.map((result) => result.dataValues);
 
     //  console.log("pensamentos do usuario", toughts);
 
-    let emptyToughts = false;
+    let emptyToughts = true;
 
-    if (toughts.length === 0) {
-      emptyToughts = true;
+    if (toughts.length > 0) {
+      emptyToughts = false;
     }
 
-    console.log(toughts);
-    console.log(emptyToughts);
+    //console.log("pensamentos", toughts);
+    // console.log(emptyToughts);
 
-    res.render("toughts/dashboard", { toughts });
+    res.render("toughts/dashboard", { toughts, emptyToughts });
   }
 
   static createTought(req, res) {
@@ -84,7 +85,7 @@ module.exports = class ToughtController {
 
     const tought = await Tought.findOne({ where: { id: id }, raw: true });
 
-    console.log("edição", tought);
+    // console.log("edição", tought);
 
     res.render("toughts/edit", { tought });
   }
